@@ -1,9 +1,11 @@
+// text from field funciton 
 const getText = (id) => {
     const searchField = document.getElementById(id);
     const searchText = searchField.value;
     searchField.value = '';
     return searchText;
 }
+// mobile display on search function 
 const displayMobiles = data => {
     const cardGroup = document.getElementById('cards-group');
     const div = document.createElement('div');
@@ -23,6 +25,7 @@ const displayMobiles = data => {
     cardGroup.appendChild(div);
 
 }
+// getting mobile from array funciotn 
 const getMobiles = (data) => {
     console.log(data);
     document.getElementById('detail').innerHTML = ``;
@@ -39,6 +42,7 @@ const getMobiles = (data) => {
     }
 
 }
+// on search button click funtion 
 const buttonClick = () => {
     const searchText = getText('input-field')
     console.log(searchText);
@@ -46,7 +50,7 @@ const buttonClick = () => {
 
 }
 
-
+// on click details button function 
 const mobileDetails = data => {
     console.log('dddd', data);
     document.getElementById('detail').innerHTML = ``;
@@ -65,6 +69,11 @@ const mobileDetails = data => {
         <p class="card-text">Memory: ${data.mainFeatures.memory}</p>
         <p class="card-text">Storage: ${data.mainFeatures.storage}</p>
         <p id="sensors" class="card-text">Sensors:</p>
+        <h6 class="card-text">Others Features</h6>
+        <p class="card-text">WLAN: ${data.others.WLAN}</p>
+        <p class="card-text">Bluetooth: ${data.others.Bluetooth}</p>
+        <p class="card-text">NFC: ${data.others.NFC}</p>
+        <p class="card-text">USB: ${data.others.USB}</p>
 
     </div>
 </div>
@@ -78,6 +87,7 @@ const mobileDetails = data => {
     });
 
 }
+// detail button function 
 const detailsClick = (id) => {
     fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
         .then(res => res.json()).then(data => mobileDetails(data.data));
