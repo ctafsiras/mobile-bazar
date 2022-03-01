@@ -32,10 +32,17 @@ const getMobiles = (data) => {
     document.getElementById('cards-group').innerHTML = '';
     document.getElementById('not-found').style.display = 'none';
     if (data.status) {
+        let i = 0;
         for (const mobile of data.data) {
+
+            if (i < 20) {
+                displayMobiles(mobile);
+            }
+
             console.log(mobile);
-            displayMobiles(mobile);
+            i++;
         }
+
     }
     else {
         document.getElementById('not-found').style.display = 'block';
@@ -62,7 +69,7 @@ const mobileDetails = data => {
     <div class="col-12 col-sm-6">
         <h5 class="card-title">Model: ${data.name}</h5>
         <h6 class="card-text">Brand: ${data.brand}</h6>
-        <p class="card-text">Release Date: ${data.releaseDate}</p>
+        <p class="card-text">Release Date: ${data.releaseDate ? data.releaseDate : 'Release Date Not Found'}</p>
         <h6 class="card-text">Main Features</h6>
         <p class="card-text">Chipset: ${data.mainFeatures.chipSet}</p>
         <p class="card-text">Display Size: ${data.mainFeatures.displaySize}</p>
