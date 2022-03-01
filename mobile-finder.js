@@ -1,4 +1,4 @@
-function getText(id) {
+const getText = (id) => {
     const searchField = document.getElementById(id);
     const searchText = searchField.value;
     searchField.value = '';
@@ -23,7 +23,7 @@ const displayMobiles = data => {
     cardGroup.appendChild(div);
 
 }
-function getMobiles(data) {
+const getMobiles = (data) => {
     console.log(data);
     document.getElementById('detail').innerHTML = ``;
     document.getElementById('cards-group').innerHTML = '';
@@ -39,7 +39,7 @@ function getMobiles(data) {
     }
 
 }
-function buttonClick() {
+const buttonClick = () => {
     const searchText = getText('input-field')
     console.log(searchText);
     fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`).then(res => res.json()).then(data => getMobiles(data));
@@ -54,8 +54,8 @@ const mobileDetails = data => {
     const div = document.createElement('div');
     div.innerHTML = `
     <div class="row d-flex align-items-center mx-auto py-5">
-    <img src="${data.image}" class="col-6 w-25" alt="...">
-    <div class="col-6">
+    <img src="${data.image}" class="col-12 col-sm-6" alt="...">
+    <div class="col-12 col-sm-6">
         <h5 class="card-title">Model: ${data.name}</h5>
         <h6 class="card-text">Brand: ${data.brand}</h6>
         <p class="card-text">Release Date: ${data.releaseDate}</p>
@@ -64,7 +64,7 @@ const mobileDetails = data => {
         <p class="card-text">Display Size: ${data.mainFeatures.displaySize}</p>
         <p class="card-text">Memory: ${data.mainFeatures.memory}</p>
         <p class="card-text">Storage: ${data.mainFeatures.storage}</p>
-        <span id="sensors" class="card-text">Sensors:</span>
+        <p id="sensors" class="card-text">Sensors:</p>
 
     </div>
 </div>
@@ -78,7 +78,7 @@ const mobileDetails = data => {
     });
 
 }
-function detailsClick(id) {
+const detailsClick = (id) => {
     fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
         .then(res => res.json()).then(data => mobileDetails(data.data));
 }
