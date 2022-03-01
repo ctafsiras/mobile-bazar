@@ -77,10 +77,10 @@ const mobileDetails = data => {
         <p class="card-text">Storage: ${data.mainFeatures.storage}</p>
         <p id="sensors" class="card-text">Sensors:</p>
         <h6 class="card-text">Others Features</h6>
-        <p class="card-text">WLAN: ${data.others.WLAN}</p>
-        <p class="card-text">Bluetooth: ${data.others.Bluetooth}</p>
-        <p class="card-text">NFC: ${data.others.NFC}</p>
-        <p class="card-text">USB: ${data.others.USB}</p>
+        <p class="card-text">WLAN: ${data.others?.WLAN ? data.others.WLAN : 'Not Found'}</p>
+        <p class="card-text">Bluetooth: ${data.others?.Bluetooth ? data.others.Bluetooth : 'Not Found'}</p>
+        <p class="card-text">NFC: ${data.others?.NFC ? data.others.NFC : 'Not Found'}</p>
+        <p class="card-text">USB: ${data?.others?.USB ? data.others.USB : 'Not Found'}</p>
 
     </div>
 </div>
