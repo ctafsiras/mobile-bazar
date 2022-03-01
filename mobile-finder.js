@@ -25,7 +25,7 @@ const displayMobiles = data => {
 }
 function getMobiles(data) {
     console.log(data);
-    document.getElementById('detail').innerHTML=``;
+    document.getElementById('detail').innerHTML = ``;
     document.getElementById('cards-group').innerHTML = '';
     document.getElementById('not-found').style.display = 'none';
     if (data.status) {
@@ -48,22 +48,34 @@ function buttonClick() {
 
 
 const mobileDetails = data => {
-    console.log('dddd',data);
-    document.getElementById('detail').innerHTML=``;
+    console.log('dddd', data);
+    document.getElementById('detail').innerHTML = ``;
     const detailDiv = document.getElementById('detail');
     const div = document.createElement('div');
     div.innerHTML = `
-    <div class="card mx-auto" style="width: 18rem;">
-    <img src="${data.image}" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Model: ${data.name}</h5>
-      <h6 class="card-text">Brand: ${data.brand}</h6>
-      <p class="card-text">Release Date: ${data.releaseDate}</p>
-      
+    <div class="row d-flex align-items-center mx-auto py-5">
+    <img src="${data.image}" class="col-6 w-25" alt="...">
+    <div class="col-6">
+        <h5 class="card-title">Model: ${data.name}</h5>
+        <h6 class="card-text">Brand: ${data.brand}</h6>
+        <p class="card-text">Release Date: ${data.releaseDate}</p>
+        <h6 class="card-text">Main Features</h6>
+        <p class="card-text">Chipset: ${data.mainFeatures.chipSet}</p>
+        <p class="card-text">Display Size: ${data.mainFeatures.displaySize}</p>
+        <p class="card-text">Memory: ${data.mainFeatures.memory}</p>
+        <p class="card-text">Storage: ${data.mainFeatures.storage}</p>
+        <span id="sensors" class="card-text">Sensors:</span>
+
     </div>
-  </div>
+</div>
     `;
     detailDiv.appendChild(div);
+    data.mainFeatures.sensors.forEach(element => {
+        const sensorsId = document.getElementById('sensors');
+        const sensor = document.createElement('li');
+        sensor.innerText = element;
+        sensorsId.appendChild(sensor);
+    });
 
 }
 function detailsClick(id) {
